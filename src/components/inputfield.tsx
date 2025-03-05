@@ -16,14 +16,16 @@ function inputField(): JSX.Element {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="input-form" onSubmit={handleSubmit}>
         <input
+          className="input-field"
           type="text"
           value={address}
           onChange={(e) => setAdress(e.target.value)}
         />
+        <button className="submit-btn" type="submit">Submit</button>
       </form>
-      <button type="submit">Submit</button>
+      
     </div>
   );
 }
