@@ -5,6 +5,12 @@ function inputField(): JSX.Element {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Form validation to prevent empty string input.
+    if(address.trim() === "") {
+        alert("Please enter a valid address.")
+        return
+    }
     console.log(address);
   };
 
