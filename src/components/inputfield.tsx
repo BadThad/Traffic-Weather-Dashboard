@@ -1,7 +1,7 @@
 import React, { JSX, useState } from "react";
 
-function inputField(): JSX.Element {
-  const [address, setAdress] = useState<string>("");
+function InputField(): JSX.Element {
+  const [address, setAddress] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ function inputField(): JSX.Element {
           className="input-field"
           type="text"
           value={address}
-          onChange={(e) => setAdress(e.target.value)}
+          onChange={(e) => setAddress(e.target.value)}
         />
         <button className="submit-btn" type="submit">Submit</button>
       </form>
@@ -30,4 +30,4 @@ function inputField(): JSX.Element {
   );
 }
 
-export default inputField;
+export default InputField;
