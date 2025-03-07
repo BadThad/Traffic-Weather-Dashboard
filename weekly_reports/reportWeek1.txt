@@ -1,0 +1,15 @@
+Monday 2025-03-03
+A kickoff meeting where we prelimarily divided up the tasks and discussed our
+project structure as well as some details about naming conventions. We set up the project in
+GitHub and added our first to-do's to the board in GitHub Projects, the utility we chose to use
+to track the progress of the project.
+
+Wednesday 2025-03-05
+A follow-up meeting where we agreed on the roles and tasks. We discussed roughly the goals 
+for each week of the project, which largely fell in line with the goals set out by the 
+group assigment.
+
+Friday 2025-03-07
+Weekly progress meeting to review how the project is progressing and what was accomplished during
+the week. We also decided that we would have at least 2 meetings per week, one on Monday to lay out
+the goals for the week, and one on Friday to review.
