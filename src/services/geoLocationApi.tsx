@@ -6,9 +6,11 @@ const fetchLocationData = async () => {
   try {
     const response = await fetch(api_url);
     const locationData = await response.json();
-    console.log(locationData.results[0].geometry.location);
+    console.log("Longitute: " + locationData.results[0].geometry.location.lng);
+    console.log("Latitude: " + locationData.results[0].geometry.location.lat);
+    console.log("Address: " + locationData.results[0].formatted_address);
   } catch (error) {
-    console.log(error);
+    console.log("Could not fetch data from API" + "-" +  error);
   }
 };
 
