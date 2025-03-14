@@ -1,0 +1,8 @@
+Monday 2025-03-10
+Meeting postponed to Wednesday due to majority of the group not being able to attend.
+
+Wednesday 2025-03-12
+Finalizing the functionality of the geolocation API service.
+
+Friday 2025-03-14
+Weekly progress meeting. Public Transport API and Weather API is progressing.
