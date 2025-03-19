@@ -1,12 +1,12 @@
 import './App.css'
-import InputField from './components/inputfield'
+import { SearchBar } from './components/searchbar'
 
 function App() {
 
   return (
     <div>
       <p>Hello Traffic-Weather-Dashboard</p>
-      <InputField/>
+      <SearchBar/>
     </div>
   )
 }
