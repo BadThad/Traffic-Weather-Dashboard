@@ -18,4 +18,4 @@ const fetchWeather = async (
   }
 };
 
-fetchWeather(40.7128, -74.006);
+fetchWeather(41.7128, -74.006);
