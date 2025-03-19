@@ -2,7 +2,7 @@ const fetchWeather = async (
   latitude: number,
   longitude: number
 ): Promise<void> => {
-  const API_KEY = "YOUR_OPENWEATHER_API_KEY";
+  const API_KEY = "236c8493b510ce5fe230adb590f7438f";
 
   try {
     const response = await fetch(
