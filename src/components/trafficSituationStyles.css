@@ -1,0 +1,7 @@
+.componentContainer{
+    background-color: rgb(255, 154, 22);
+    height: 200px;
+    width: 400px;
+
+    padding:15px;
+}

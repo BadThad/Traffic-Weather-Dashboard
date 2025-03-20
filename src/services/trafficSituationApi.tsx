@@ -1,24 +1,21 @@
-const myKey = "b7b7d7583c7d4d79b51214eceb67a1ad";
-const url = `https://api.trafikinfo.trafikverket.se/v2/data.json`;
-
-const lon = "16.52"
-const lat = "58.96"
+const myKey:string = "b7b7d7583c7d4d79b51214eceb67a1ad";
+const url:string = `https://api.trafikinfo.trafikverket.se/v2/data.json`;
 
 const time = new Date();
 console.log(time);
 
+async function fetchTrafikverketAPI(lon:number, lat:number) {
 
-const xmlData = 
+    const xmlData = 
     `<REQUEST>
         <LOGIN authenticationkey="${myKey}" />
-        <QUERY objecttype="Situation" schemaversion="1" limit="2">
+        <QUERY objecttype="Situation" schemaversion="1" limit="1">
         <FILTER>
-            <NEAR name="Deviation.Geometry.WGS84" value="${lon} ${lat}" mindistance="0m" maxdistance="1000m" />
+            <NEAR name="Deviation.Geometry.WGS84" value="${lon} ${lat}" mindistance="0m" maxdistance="90000m" />
         </FILTER>
         </QUERY>
     </REQUEST>`;
 
-async function fetchTrafikverketAPI() {
     try{
         const response = await fetch(url, {
             method: "POST",
@@ -31,12 +28,12 @@ async function fetchTrafikverketAPI() {
             throw new Error ("Network response was way no okey!");
         }
         const data = await response.json();
-        console.log("data :" + JSON.stringify(data
-
-        ));
+        console.log("data :" + JSON.stringify(data));
+        return (data);
+        
     }   catch(error){
         console.log(error);
     }
 };
 
-fetchTrafikverketAPI();
+fetchTrafikverketAPI(12.703706, 56.0442098);
