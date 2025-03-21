@@ -1,20 +1,19 @@
+import { useEffect, useState } from "react";
 import "./trafficSituationStyles.css"
-
-
-
 
 function TrafficSituation() {
 
+const [adress, setAdress] = useState("Paradisäpplevägen 111");
+const [situation, setSituation] = useState("väg avstängd");
+const [message, setMessage] = useState("The road. It's..... gone!");
+
+
+
     return (
         <div className="componentContainer">
-            <p>Paradisäpplevägen 111</p>                                    {/*VAR*/}
-            
-            <p>Väg avstängd</p>                                             {/*VAD*/}
-            
-            <p>There is a bajskorv ligging on the side of the road.         {/*VARFÖR*/}
-                It's pretty smelly if you stay there. The poop-patrol is 
-                on the way to scoop it up. 
-            </p>
+            <p>{adress}</p>             {/*VAR*/}
+            <p>{situation}</p>          {/*VAD*/}
+            <p>{message}</p>            {/*VARFÖR*/}          
         </div>
     );
 
