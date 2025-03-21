@@ -12,7 +12,7 @@ const fetchWeather = async (
     if (!response.ok) throw new Error("Failed to fetch weather data");
 
     const data = await response.json();
-    console.log("Weather Data:", data);
+    console.log("Weather Data:", data); // Hämta data från console.log
   } catch (err) {
     console.error("Error fetching weather data:", err);
   }
