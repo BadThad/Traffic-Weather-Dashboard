@@ -1,4 +1,4 @@
-export const fetchLocationData = async () => {
+export const FetchLocationData = async () => {
 
   const api_key = "0446888e31c3f0f934343d993bca85e5";
   const api_url: string = `https://geokeo.com/geocode/v1/search.php?q=helsingborg&api=${api_key}`;
