@@ -1,10 +1,13 @@
 import React, { JSX, useState } from "react";
+import { useSearchStore } from "../stores/searchStore";
 
 export function SearchBar(): JSX.Element {
   const [location, setLocation] = useState<string>("");
+  const setSearchQuery = useSearchStore((state) => state.setSearchQuery)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setSearchQuery(location);
 
     // Form validation to prevent empty string input.
     if(location.trim() === "") {
@@ -18,6 +21,7 @@ export function SearchBar(): JSX.Element {
     <div className="searchbar-container">
       <form className="searchbar-form" onSubmit={handleSubmit}>
         <input
+          placeholder="Enter your location..."
           className="searchbar-input"
           type="text"
           value={location}
