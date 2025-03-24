@@ -8,7 +8,7 @@ interface WeatherState {
   fetchWeather: (latitude: number, longitude: number) => Promise<void>;
 }
 
-const useWeatherStore = create<WeatherState>((set) => ({
+export const useWeatherStore = create<WeatherState>((set) => ({
   temperature: null,
   condition: null,
   loading: false,
