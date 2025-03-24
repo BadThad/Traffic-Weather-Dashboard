@@ -1,7 +1,6 @@
 import "./trafficSituationStyles.css"
 import { useSituationsStore } from "../stores/situationsStore";
 import { useSearchStore } from "../stores/searchStore";
-import { fetchCoordinates } from "../services/geoLocationApi";
 
 function TrafficSituation() {
 
