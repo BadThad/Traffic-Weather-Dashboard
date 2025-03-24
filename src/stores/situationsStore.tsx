@@ -5,7 +5,7 @@ type SituationsStore = {
   where: string;
   what: string;
   why: string;
-  fetchSituationAsync: (lon: number, lat: number) => Promise<void>;
+  fetchSituationAsync: (lon: number | null, lat: number | null) => Promise<void>;
 };
 
 //create the store
@@ -15,6 +15,12 @@ export const useSituationsStore = create<SituationsStore>((set) => ({
   why: "nothing",
 
   fetchSituationAsync: async (lon, lat) => {
+    console.log(`${lon} + ${lat}`)
+
+    if (lon === null || lat === null){
+        return console.log("no latitude, no longitud.")
+    };
+    
     const url = `https://api.trafikinfo.trafikverket.se/v2/data.json`;
     const myKey = "b7b7d7583c7d4d79b51214eceb67a1ad";
 
@@ -27,22 +33,23 @@ export const useSituationsStore = create<SituationsStore>((set) => ({
             </QUERY>
         </REQUEST>`;
 
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        body: xmlData,
-        headers: {
-          "Content-Type": "text/xml",
-        },
-      });
-      if (!response.ok) {
-        throw new Error("Network respons was not OK!");
-      }
-      const data = await response.json();
-      set({why: JSON.stringify(data)})
-      console.log(JSON.stringify(data));
-    } catch (error) {
-      console.log(error);
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                body: xmlData,
+                headers: {
+                    "Content-Type": "text/xml",
+                },
+            });
+            if (!response.ok) {
+                throw new Error ("Network respons was not OK!");
+            }
+            const data = await response.json();
+            console.log (JSON.stringify(data));
+            return set({why: JSON.stringify(data)});
+        } catch (error) {
+            console.log(error);
+        }
     }
-  },
-}));
+  }
+));
