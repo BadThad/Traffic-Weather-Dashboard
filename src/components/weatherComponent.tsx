@@ -21,26 +21,20 @@ const WeatherSearchBox: React.FC = () => {
   };
 
   return (
-    <div className="p-4 border rounded shadow-lg w-96 mx-auto mt-5">
+    <div>
       <input
         type="text"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="Enter an address"
-        className="border p-2 w-full rounded mb-2"
       />
-      <button
-        onClick={handleSearch}
-        className="bg-blue-500 text-white px-4 py-2 rounded w-full"
-      >
-        Search
-      </button>
-      {searchError && <p className="text-red-500 mt-2">{searchError}</p>}
-      {loading && <p className="mt-2">Loading...</p>}
-      {error && <p className="text-red-500 mt-2">Error: {error}</p>}
+      <button onClick={handleSearch}>Search</button>
+      {searchError && <p>{searchError}</p>}
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
       {temperature !== null && condition && (
-        <div className="mt-4 p-3 bg-gray-100 rounded">
-          <p className="text-lg font-semibold">Temperature: {temperature}°C</p>
+        <div>
+          <p>Temperature: {temperature}°C</p>
           <p>Condition: {condition}</p>
         </div>
       )}
