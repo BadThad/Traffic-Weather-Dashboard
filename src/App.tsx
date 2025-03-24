@@ -1,7 +1,7 @@
 import "./App.css";
 import SearchBar from "./components/searchbar";
 import TrafficSituation from "./components/trafficSituation";
-import WeatherComponent from "./stores/weatherStore";
+import WeatherSearchBox from "./components/weatherComponent";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <p>Hello Traffic-Weather-Dashboard</p>
       <SearchBar />
       <TrafficSituation></TrafficSituation>
-      <WeatherComponent></WeatherComponent>
+      <WeatherSearchBox></WeatherSearchBox>
     </div>
   );
 }
