@@ -1,12 +1,11 @@
-const fetchWeather = async (
-  latitude: number,
-  longitude: number
-): Promise<void> => {
+import { useSearchStore } from "../stores/searchStore";
+
+const fetchWeather = async (lat: number, lng: number): Promise<void> => {
   const API_KEY = "236c8493b510ce5fe230adb590f7438f";
 
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&appid=${API_KEY}`
     );
 
     if (!response.ok) throw new Error("Failed to fetch weather data");
@@ -18,4 +17,4 @@ const fetchWeather = async (
   }
 };
 
-fetchWeather(41.7128, -74.006);
+fetchWeather(lat, lng);
