@@ -1,20 +1,21 @@
 import { create } from "zustand";
 
-type WeatherStore = {
-  temp: string;
-  cond: string;
-  fetchWeatherAsync: (lon: number, lat: number) => Promise<void>;
-};
+interface WeatherState {
+  temperature: number | null;
+  condition: string | null;
+  loading: boolean;
+  error: string | null;
+  fetchWeather: (latitude: number, longitude: number) => Promise<void>;
+}
 
-export const useWeatherStore = create<WeatherStore>((set) => ({
-  temp: "Temperature",
-  cond: "Condition",
-
-  fetchWeatherAsync: async (
-    latitude: number,
-    longitude: number
-  ): Promise<void> => {
+const useWeatherStore = create<WeatherState>((set) => ({
+  temperature: null,
+  condition: null,
+  loading: false,
+  error: null,
+  fetchWeather: async (latitude, longitude) => {
     const API_KEY = "236c8493b510ce5fe230adb590f7438f";
+    set({ loading: true, error: null });
 
     try {
       const response = await fetch(
@@ -24,9 +25,37 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
       if (!response.ok) throw new Error("Failed to fetch weather data");
 
       const data = await response.json();
-      console.log("Weather Data:", data); // Hämta data från console.log
-    } catch (err) {
-      console.error("Error fetching weather data:", err);
+      set({
+        temperature: data.main.temp,
+        condition: data.weather[0].description,
+        loading: false,
+      });
+    } catch (err: any) {
+      set({ error: err.message, loading: false });
     }
   },
 }));
+
+const WeatherComponent = () => {
+  const { temperature, condition, loading, error, fetchWeather } =
+    useWeatherStore();
+
+  return (
+    <div>
+      <button onClick={() => fetchWeather(41.7128, -74.006)}>
+        Get Weather
+      </button>
+
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      {temperature !== null && condition && (
+        <div>
+          <p>Temperature: {temperature}°C</p>
+          <p>Condition: {condition}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default WeatherComponent;
