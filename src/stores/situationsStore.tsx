@@ -41,6 +41,7 @@ export const useSituationsStore = create<SituationsStore>((set) => ({
             }
             const data = await response.json();
             console.log (JSON.stringify(data));
+            set({why: JSON.stringify(data)});
         } catch (error) {
             console.log(error);
         }
