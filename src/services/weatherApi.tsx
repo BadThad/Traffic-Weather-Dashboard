@@ -1,5 +1,3 @@
-import { useSearchStore } from "../stores/searchStore";
-
 const fetchWeather = async (lat: number, lng: number): Promise<void> => {
   const API_KEY = "236c8493b510ce5fe230adb590f7438f";
 
@@ -11,10 +9,10 @@ const fetchWeather = async (lat: number, lng: number): Promise<void> => {
     if (!response.ok) throw new Error("Failed to fetch weather data");
 
     const data = await response.json();
-    console.log("Weather Data:", data); // Hämta data från console.log
+    console.log("Weather Data:", data.main.temp, data.weather[0].description);
   } catch (err) {
     console.error("Error fetching weather data:", err);
   }
 };
 
-fetchWeather(lat, lng);
+fetchWeather(41.7128, -74.006);
