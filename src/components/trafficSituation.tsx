@@ -4,11 +4,9 @@ import { useSituationsStore } from "../stores/situationsStore";
 
 function TrafficSituation() {
 
-    /*
-const [adress, setAdress] = useState("Paradisäpplevägen 111");
-const [situation, setSituation] = useState("väg avstängd");
-const [message, setMessage] = useState("The road. It's..... gone!");
-*/
+const { fetchSituationAsync } =
+useSituationsStore();
+    
 
 const where = useSituationsStore((state) => state.where);
 const what = useSituationsStore((state) => state.what);
@@ -18,7 +16,10 @@ const why = useSituationsStore((state) => state.why);
         <div className="componentContainer">
             <p>{where}</p>  {/*VAR ÄR SITUATIONEN*/}
             <p>{what}</p>   {/*VAD FÖR SITUATION*/}
-            <p>{why}</p>    {/*BESKRIVNING AV SITUATIONEN*/}          
+            <p>{why}</p>    {/*BESKRIVNING AV SITUATIONEN*/}   
+            <button onClick={() => fetchSituationAsync(12, 56)}>
+              KLICK FOR SITUATION
+            </button>       
         </div>
     );
 

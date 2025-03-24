@@ -39,6 +39,7 @@ export const useSituationsStore = create<SituationsStore>((set) => ({
         throw new Error("Network respons was not OK!");
       }
       const data = await response.json();
+      set({why: JSON.stringify(data)})
       console.log(JSON.stringify(data));
     } catch (error) {
       console.log(error);
