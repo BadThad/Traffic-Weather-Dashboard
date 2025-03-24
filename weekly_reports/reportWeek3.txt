@@ -1,0 +1,12 @@
+Monday 2025-03-17
+Planned the tasks for the week. Discussed the use of Zustand. Most of the functionality
+for traffic situation API and weather API is done.
+
+Wednesday 2025-03-19
+Mergeday! Had some issues merging the geolocation branch but we figured it
+out in the end.
+
+Friday 2025-03-21
+Review of the weeks tasks. An additional review of Zustand to make sure we understand
+how it functions. Planning on where we want the project to be at by Monday so that we
+can work on the final tasks of styling and working out any remaining issues.
