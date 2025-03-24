@@ -16,6 +16,11 @@ export const useSituationsStore = create<SituationsStore>((set) => ({
 
   fetchSituationAsync: async (lon, lat) => {
     console.log(`${lon} + ${lat}`)
+
+    if (lon === null || lat === null){
+        return console.log("no latitude, no longitud.")
+    };
+    
     const url = `https://api.trafikinfo.trafikverket.se/v2/data.json`;
     const myKey = "b7b7d7583c7d4d79b51214eceb67a1ad";
 
