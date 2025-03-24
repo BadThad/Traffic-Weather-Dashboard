@@ -9,10 +9,10 @@ const fetchWeather = async (lat: number, lng: number): Promise<void> => {
     if (!response.ok) throw new Error("Failed to fetch weather data");
 
     const data = await response.json();
-    console.log("Weather Data:", data.main.temp, data.weather[0].description);
+    console.log("Weather Data:", data.main.temp, data.weather.description);
   } catch (err) {
     console.error("Error fetching weather data:", err);
   }
 };
 
-fetchWeather(41.7128, -74.006);
+fetchWeather(56.044198399806945, 12.704068399999999);
