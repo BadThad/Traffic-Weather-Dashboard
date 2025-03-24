@@ -1,5 +1,5 @@
 import "./App.css";
-import { SearchBar } from "./components/searchbar";
+import SearchBar from "./components/searchbar";
 import TrafficSituation from "./components/trafficSituation";
 import WeatherComponent from "./stores/weatherStore";
 
