@@ -10,7 +10,7 @@ export const fetchCoordinates = async (query: string) => {
   }
 
   const data = await response.json();
-  if (data.result.lenght === 0) {
+  if (data.result.length === 0) {
     throw new Error("No results found.");
   }
 
