@@ -1,4 +1,4 @@
-export const fetchWeather = async (lat: number, lng: number) => {
+export const fetchWeather = async (lat: number | null, lng: number |null) => {
   const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
   try {

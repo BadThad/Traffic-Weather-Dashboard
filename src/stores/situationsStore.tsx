@@ -8,7 +8,7 @@ type SituationsStore = {
 };
 
 //create the store
-export const useSituationsStore = create<SituationsStore>((set) => ({
+export const useSituationsStore = create<SituationsStore>(() => ({
   where: "here",
   what: "olycka",
   why: "nothing",
