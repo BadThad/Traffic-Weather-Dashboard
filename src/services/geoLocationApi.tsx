@@ -1,21 +1,37 @@
-const api_key = "0446888e31c3f0f934343d993bca85e5";
+import { Coordinates } from "../types";
 
-export const fetchCoordinates = async (query: string) => {
-  const response = await fetch(
-    `https://geokeo.com/geocode/v1/search.php?q=${encodeURIComponent(query)}&api=${api_key}`
-  );
+export const fetchCoordinates = async (query: string): Promise<Coordinates> => {
+  try {
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch geolocation data.");
+    const apiKey = import.meta.env.VITE_GEOKEO_API_KEY;
+
+    if(!apiKey) throw new Error("API key is missing.");
+
+    const response = await fetch(
+      `/api/v1/search.php?q=${encodeURIComponent(query)}&api=${apiKey}`
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch geolocation data.");
+    }
+
+    const data = await response.json();
+
+    if (!data.results || data.results.length === 0) {
+      throw new Error("Location not found.");
+    }
+
+    const {lat, lng} = data.results[0].geometry.location;
+    const formattedAddress = data.results[0].formatted;
+
+    console.log("Fetched coordinates:", { lat, lng, address: formattedAddress });
+
+    return { lat, lng, address: formattedAddress };
+
+  } catch (error) {
+    console.error("Geolocation fetch error:", error)
+    throw new Error("Unable to retrieve geolocation data.");
   }
-
-  const data = await response.json();
-  if (data.result.length === 0) {
-    throw new Error("No results found.");
-  }
-
-  return {
-    lat: data.results[0].geometry.location.lat,
-    lng: data.results[0].geometry.location.lng,
-  };
 };
+
+

@@ -7,6 +7,7 @@ const SearchBar: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Search query submitted:", query);
     setSearchQuery(query); // Updates the Zustand store
 
     // Form validation to prevent empty string input.
