@@ -1,0 +1,16 @@
+Monday 2025-03-24
+Final week! We met up early as usual and began working on our different files to meet the upcomming deadline.
+Doing our best to make sure everything was working so the final day could be spent working on styling. 
+
+Tuesday 2025-03-25
+D Day! Our codes are working when being logged in console, but we have had some issues merging everything. The day started at 09.00 and we are still here just past midnight.
+We got weather and traffic situations to work, but when importing the last bit of code from the 4th assignment we got plenty of errors. Spent few hours trying to get tailwind to work
+but we were not able to make that happend. 
+
+Conclusion: 2025-03-26
+If we had another 2-3 weeks we would probably restart the project and get everything properly sorted from day 1.
+Storing API's and using zustand in a better way. The communication has been really good for the most part but maybe adding some guidlines to push code atleast once a week
+would have been very benefical as we tried merging lots of code the last day of the project. 
+I think we have all enjoyed the project and working together, while we found the assignment to be of higher difficulty it has still been a fun and informative month of back end development.
+
+/ Tom, Peter, Areesha & Philip.
