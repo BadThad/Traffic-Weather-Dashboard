@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "tailwind": "^2.3.1",
     "tsx": "^4.19.3",
     "zustand": "^5.0.3"
   },
