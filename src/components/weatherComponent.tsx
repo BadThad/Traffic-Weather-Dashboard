@@ -22,7 +22,7 @@ const WeatherSearchBox: React.FC = () => {
           coordinates.lat,
           coordinates.lng
         );
-        setWeather(weatherData);
+        setWeather(weather);
       } catch (err: any) {
         setError(err.message);
         setWeather(null);
