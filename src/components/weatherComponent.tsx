@@ -26,7 +26,7 @@ const WeatherSearchBox: React.FC = () => {
         type="text"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Enter an address"
+        placeholder="Weather where?"
       />
       <button onClick={handleSearch}>Search</button>
       {searchError && <p>{searchError}</p>}
