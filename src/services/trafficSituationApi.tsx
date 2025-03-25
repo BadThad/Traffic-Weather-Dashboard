@@ -1,4 +1,4 @@
-const myKey:string = "b7b7d7583c7d4d79b51214eceb67a1ad";
+const myKey = import.meta.env.VITE_TRAFIKVERKET_1_API_KEY;
 const url:string = `https://api.trafikinfo.trafikverket.se/v2/data.json`;
 
 const time = new Date();
@@ -28,8 +28,19 @@ async function fetchTrafikverketAPI(lng:number, lat:number) {
             throw new Error ("Network response was way no okey!");
         }
         const data = await response.json();
-        console.log("data :" + JSON.stringify(data));
-        return (data);
+        console.log( "data :" + JSON.stringify(
+              data.Situation.map((situation: any) => ({
+                id: situation.Id,
+                description: situation.Description,
+                type: situation.SituationType,
+              }))
+            )
+        );
+        return data.Situation?.map((situation: any) => ({
+            id: situation.Id,
+            description: situation.Description,
+            type: situation.SituationType,
+        })) || [];
         
     }   catch(error){
         console.log(error);
