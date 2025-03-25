@@ -4,13 +4,13 @@ import { fetchCoordinates } from "../services/geoLocationApi";
 interface SearchState {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  coordinates: {lat: number, lng: number} | null;
+  coordinates: {lat: number | null, lng: number | null};
   setCoordinates: (lat: number, lng: number) => void;
 }
 
 export const useSearchStore = create<SearchState>((set) => ({
   searchQuery: "",
-  coordinates: null,
+  coordinates: {lat: null, lng: null},
 
   setSearchQuery: async (query) => {
     set({ searchQuery: query });
@@ -19,10 +19,10 @@ export const useSearchStore = create<SearchState>((set) => ({
       console.log("Fetching coordinates for:", query);
       const coords = await fetchCoordinates(query);
       console.log("Coordinates fetched:", coords);
-      set({coordinates: null});
+      set({coordinates: {lat: coords.lat, lng: coords.lng}});
     } catch (error) {
       console.error("Error fetching coordinates:", error);
-      set({coordinates: null})
+      set({coordinates: {lat: null, lng: null}})
     }
   },
   setCoordinates: (lat, lng) => set({coordinates: {lat, lng}}),
