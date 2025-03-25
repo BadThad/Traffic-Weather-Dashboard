@@ -1,43 +1,54 @@
 import "./trafficSituationStyles.css"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSituationsStore } from "../stores/situationsStore";
 import { useSearchStore } from "../stores/searchStore";
+import fetchTrafikverketAPI from "../services/trafficSituationApi";
 
 const TrafficSituation: React.FC = () => {
-
   const coordinates = useSearchStore((state) => state.coordinates);
-  const where = useSituationsStore((state) => state.where);
-  const what = useSituationsStore((state) => state.what);
-  const why = useSituationsStore((state) => state.why);
+  const setSituations = useSituationsStore((state => state.situations))
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        if (!coordinates) return;
+  useEffect(() => {
+    if (!coordinates) return;
 
-        const getSituation = async () => {
-            setLoading(true);
-            setError(null);
+    const getSituation = async () => {
+      setLoading(true);
+      setError(null);
 
-            try {
-                const situation = await fetchTrafikverketAPI(coordinates.lat, coordinates.lng);
-                set where(where)
-            }
-        }
-    }, [coordinates, ])
-  
-  const { fetchSituationAsync } = useSituationsStore();
+      try {
+        const situations = await fetchTrafikverketAPI(
+          coordinates.lat,
+          coordinates.lng
+        );
+        situations(situations);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getSituation();
+  }, [coordinates, setSituations]);
+
+  const situations = useSituationsStore((state) => state.situations);
 
   return (
     <div className="componentContainer">
-      <p>{where}</p> {/*VAR ÄR SITUATIONEN*/}
-      <p>{what}</p> {/*VAD FÖR SITUATION*/}
-      <p>{why}</p> {/*BESKRIVNING AV SITUATIONEN*/}
-      <button
-        onClick={() => fetchSituationAsync(coordinates.lat, coordinates.lng)}
-      >
-        KLICK FOR SITUATION
-      </button>
+      <h2>Traffic Situations:</h2>
+      {loading && <p>Loading information on traffic situation</p>}
+      {error && <p>{error}</p>}
+      {situations.length === 0 && !loading && (
+        <p>No traffic situations found.</p>
+      )}
+      <ul>
+        {situations.map((situation) => (
+          <li key={situation.id} className="#">
+            <strong>{situation.type}</strong> {situation.description}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
