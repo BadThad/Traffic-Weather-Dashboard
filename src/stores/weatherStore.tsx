@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 interface WeatherData {
   temp: number;
-  condition: string; 
+  condition: string;
   description: string;
 }
 
@@ -13,5 +13,5 @@ interface WeatherState {
 
 export const useWeatherStore = create<WeatherState>((set) => ({
   weather: null,
-  setWeather: (weather) => set({weather}),
-}));  
+  setWeather: (weather) => set({ weather }),
+}));

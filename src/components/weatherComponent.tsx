@@ -42,7 +42,7 @@ const WeatherSearchBox: React.FC = () => {
         <div>
           <p>Temperature: {weather?.temp}°C</p>
           <p>Condition: {weather?.condition}</p>
-          <p>Description: {weather?.description}</p>
+          <p>{weather?.description}</p>
         </div>
       )}
     </div>
