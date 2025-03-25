@@ -4,14 +4,14 @@ const url:string = `https://api.trafikinfo.trafikverket.se/v2/data.json`;
 const time = new Date();
 console.log(time);
 
-async function fetchTrafikverketAPI(lon:number, lat:number) {
+async function fetchTrafikverketAPI(lng:number, lat:number) {
 
     const xmlData = 
     `<REQUEST>
         <LOGIN authenticationkey="${myKey}" />
         <QUERY objecttype="Situation" schemaversion="1" limit="1">
         <FILTER>
-            <NEAR name="Deviation.Geometry.WGS84" value="${lon} ${lat}" mindistance="0m" maxdistance="90000m" />
+            <NEAR name="Deviation.Geometry.WGS84" value="${lng} ${lat}" mindistance="0m" maxdistance="90000m" />
         </FILTER>
         </QUERY>
     </REQUEST>`;
@@ -36,4 +36,4 @@ async function fetchTrafikverketAPI(lon:number, lat:number) {
     }
 };
 
-fetchTrafikverketAPI(12.703706, 56.0442098);
+export default fetchTrafikverketAPI;
