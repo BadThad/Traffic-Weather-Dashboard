@@ -1,41 +1,48 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchStore } from "../stores/searchStore";
 import { useWeatherStore } from "../stores/weatherStore";
-import { fetchCoordinates } from "../services/geoLocationApi";
+import { fetchWeather } from "../services/weatherApi";
 
 const WeatherSearchBox: React.FC = () => {
-  const { searchQuery, setSearchQuery, setCoordinates } = useSearchStore();
-  const { temperature, condition, loading, error, fetchWeather } =
-    useWeatherStore();
-  const [searchError, setSearchError] = useState<string | null>(null);
+  const coordinates = useSearchStore((state) => state.coordinates);
+  const setWeather = useWeatherStore((state) => state.setWeather);
+  const weather = useWeatherStore((state) => state.weather);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = async () => {
-    setSearchError(null);
-    try {
-      const { lat, lng } = await fetchCoordinates(searchQuery);
-      setCoordinates(lat, lng);
-      fetchWeather(lat, lng);
-    } catch (err: any) {
-      setSearchError(err.message);
-    }
-  };
+  useEffect(() => {
+    if (!coordinates) return;
+
+    const getWeather = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const weatherData = await fetchWeather(
+          coordinates.lat,
+          coordinates.lng
+        );
+        setWeather(weatherData);
+      } catch (err: any) {
+        setError(err.message);
+        setWeather(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getWeather();
+  }, [coordinates, setWeather]);
 
   return (
     <div>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Enter an address"
-      />
-      <button onClick={handleSearch}>Search</button>
-      {searchError && <p>{searchError}</p>}
-      {loading && <p>Loading...</p>}
+      {loading && <p>Loading weather data...</p>}
       {error && <p>Error: {error}</p>}
-      {temperature !== null && condition && (
+      {weather?.temp !== null && weather?.condition && (
         <div>
-          <p>Temperature: {temperature}°C</p>
-          <p>Condition: {condition}</p>
+          <p>Temperature: {weather?.temp}°C</p>
+          <p>Condition: {weather?.condition}</p>
+          <p>Description: {weather?.description}</p>
         </div>
       )}
     </div>

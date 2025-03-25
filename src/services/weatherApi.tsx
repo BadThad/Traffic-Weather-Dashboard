@@ -1,5 +1,5 @@
-const fetchWeather = async (lat: number, lng: number): Promise<void> => {
-  const API_KEY = "236c8493b510ce5fe230adb590f7438f";
+export const fetchWeather = async (lat: number, lng: number) => {
+  const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
   try {
     const response = await fetch(
@@ -9,10 +9,15 @@ const fetchWeather = async (lat: number, lng: number): Promise<void> => {
     if (!response.ok) throw new Error("Failed to fetch weather data");
 
     const data = await response.json();
-    console.log("Weather Data:", data.main.temp, data.weather.description);
+    console.log("Weather Data:", data.main.temp, data.weather[0].main, data.weather[0].description);
+
+    return{
+      temperature: data.main?.temp ?? 0,
+      conditions: data.weather?.[0]?.main ?? "Unknown",
+      description: data.weather?.[0]?.description ?? "No description available",
+    };
+
   } catch (err) {
     console.error("Error fetching weather data:", err);
   }
 };
-
-fetchWeather(56.044198399806945, 12.704068399999999);

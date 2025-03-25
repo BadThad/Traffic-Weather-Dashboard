@@ -8,8 +8,7 @@ function App() {
     <div>
       <p>Hello Traffic-Weather-Dashboard</p>
       <SearchBar />
-      <TrafficSituation></TrafficSituation>
-      <WeatherSearchBox></WeatherSearchBox>
+      <WeatherSearchBox />
     </div>
   );
 }

@@ -2,7 +2,9 @@ import { Coordinates } from "../types";
 
 export const fetchCoordinates = async (query: string): Promise<Coordinates> => {
   try {
-    const apiKey = "0446888e31c3f0f934343d993bca85e5";
+
+    const apiKey = import.meta.env.VITE_GEOKEO_API_KEY;
+
     if(!apiKey) throw new Error("API key is missing.");
 
     const response = await fetch(
