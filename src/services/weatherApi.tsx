@@ -19,5 +19,11 @@ export const fetchWeather = async (lat: number, lng: number) => {
 
   } catch (err) {
     console.error("Error fetching weather data:", err);
+
+    return {
+      temperature: 0,
+      conditions: "Unavailable",
+      description: "Could not retrieve weather data.",
+    }
   }
 };
